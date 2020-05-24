@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+      name: mypod
+      labels:
+          app: nginx
+spec:
+   containers:
+   - name: mycont
+     image: nginx
+     imagePullPolicy: IfNotPresent
+     volumeMounts:
+     - name: my-vol
+       mountPath: /demo
+   volumes:
+   - name: my-vol
+     emptyDir: {}

@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+   name: mypod
+   labels:
+       env: test
+spec:
+ containers:
+ - name: mycont
+   image: nginx
+   imagePullPolicy: IfNotPresent
+   volumeMounts:
+   - name: my-vol
+     mountPath: /usr/share/nginx/html
+ initContainers:
+ - name: mycont1
+   image: busybox
+   imagePullPolicy: IfNotPresent
+   command:
+   - wget
+   - "-O"
+   - "work-dir/index.html"
+   - http://kubernetes.io
+   volumeMounts:
+   - name: my-vol
+     mountPath: /work-dir
+ volumes:
+ - name: my-vol
+   emptyDir: {}
+

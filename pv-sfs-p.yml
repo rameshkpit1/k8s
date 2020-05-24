@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: my-pv0
+    labels:
+        type: local
+spec:
+  storageClassName: pv-demo
+  capacity:
+       storage: "200Mi"
+  accessModes:
+  - ReadWriteMany
+  nfs:
+   server: 54.237.231.43
+   path: "/srv/nfs/kubedata/pv0"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: my-pv1
+    labels:
+        type: local
+spec:
+  storageClassName: pv-demo
+  capacity:
+       storage: "200Mi"
+  accessModes:
+  - ReadWriteMany
+  nfs:
+   server: 54.237.231.43
+   path: "/srv/nfs/kubedata/pv1"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: my-pv2
+    labels:
+        type: local
+spec:
+  storageClassName: pv-demo
+  capacity:
+       storage: "200Mi"
+  accessModes:
+  - ReadWriteMany
+  nfs:
+   server: 54.237.231.43
+   path: "/srv/nfs/kubedata/pv2"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: my-pv3
+    labels:
+        type: local
+spec:
+  storageClassName: pv-demo
+  capacity:
+       storage: "200Mi"
+  accessModes:
+  - ReadWriteMany
+  nfs:
+   server: 54.237.231.43
+   path: "/srv/nfs/kubedata/pv3"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: my-pv4
+    labels:
+        type: local
+spec:
+  storageClassName: pv-demo
+  capacity:
+       storage: "200Mi"
+  accessModes:
+  - ReadWriteMany
+  nfs:
+   server: 54.237.231.43
+   path: "/srv/nfs/kubedata/pv4"
+
+

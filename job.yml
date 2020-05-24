@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+     name: myjob
+     labels:
+         app: nginx-job
+spec:
+   ttlSecondsAfterFinished: 20
+   template:
+       spec:
+         containers:
+         - name: mycont
+           image: nginx
+           imagePullPolicy: IfNotPresent
+           command: ["/bin/bash","-c","echo hello world"]
+         restartPolicy: Never
+   backoffLimit: 4      

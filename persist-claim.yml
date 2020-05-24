@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: pers-claim
+spec:
+   storageClassName: pers-demo
+   accessModes:
+   - ReadWriteOnce
+   resources:
+      requests:
+            storage: "300Mi"
+

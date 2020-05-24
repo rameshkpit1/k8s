@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+     name: myjob-1
+     labels:
+          app: busybox
+spec:
+   template:
+        metadata:
+             name: mypod12
+             labels:
+                 app: busybox
+        spec:
+           containers:
+           - name: mycont
+             image: busybox
+             imagePullPolicy: IfNotPresent
+             command: ["/bin/bash","-c", "echo hello world"]
+           restartPolicy: Never

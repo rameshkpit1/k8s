@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+   name: mypod
+   labels:
+        app: nginx
+spec:
+   containers:
+   - name: mycnt
+     image: nginx
+     imagePullPolicy: IfNotPresent
+     volumeMounts:
+     - name: my-vol
+       mountPath: /demo
+
+   volumes:
+   - name: my-vol
+     hostPath:
+         path: /opt/mypersis

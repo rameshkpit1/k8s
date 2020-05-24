@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: mypod-jen
+    labels:
+        app: nginx
+spec:
+ containers:
+ - name: jenkins
+   image: jenkins
+   imagePullPolicy: IfNotPresent
+   ports:
+   - containerPort: 8080
+   volumeMounts:
+   - name: my-vol
+     mountPath: /my-jenkins
+ volumes:
+ - name: my-vol
+   emptyDir: {}

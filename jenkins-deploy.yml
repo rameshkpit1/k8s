@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: my-deploy
+    labels:
+       app: jenkins
+spec:
+   selector:
+      matchLabels:
+        app: jenkins
+   replicas: 1
+   template:
+        metadata:
+             name: jenkins-pod
+             labels:
+                 app: jenkins
+        spec:
+          containers:
+          - name: myjen-cont
+            image: jenkins
+            imagePullPolicy: IfNotPresent
+            ports:
+            - containerPort: 8080
+

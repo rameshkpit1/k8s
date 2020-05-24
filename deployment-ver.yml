@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: nginx-dploy
+   labels:
+        app: nginx
+spec:
+   selector:
+       matchLabels:
+             app: nginx
+   replicas: 3
+   template:
+       metadata:
+           name: mypod
+           labels:
+               app: nginx
+       spec:
+        containers:
+        - name: mycont
+          image: nginx
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 80

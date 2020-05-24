@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+     name: mypod
+     labels:
+         app: nginx
+spec:
+  containers:
+  - name: mycont
+    image: nginx
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+    - name: my-vol
+      mountPath: /test-vol
+  volumes:
+  - name: my-vol
+    persistentVolumeClaim:
+           claimName: pers-claim
+

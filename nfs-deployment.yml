@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: mydeploy
+    labels:
+        app: nginx
+spec:
+    replicas: 3
+    selector:
+         matchLabels:
+               app: nginx
+    template:
+         metadata:
+              name: my-nfs-pod
+              labels:
+                  app: nginx
+         spec:
+          containers:
+          - name: mycont
+            image: nginx
+            imagePullPolicy: IfNotPresent
+            volumeMounts:
+            - name: my-vol
+              mountPath: /demo
+          volumes:
+          - name: my-vol
+            persistentVolumeClaim:
+                  claimName: my-pvc
+

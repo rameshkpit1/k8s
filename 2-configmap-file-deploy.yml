@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: nginx-deploy
+spec:
+   replicas: 8
+   selector:
+       matchLabels:
+             app: nginx
+             role: dev
+   minReadySeconds: 10
+   revisionHistoryLimit: 4
+
+   strategy:
+     type:  RollingUpdate
+     rollingUpdate:
+             maxSurge: 2
+             maxUnavailable: 2
+   paused: false
+   template:
+       metadata: 
+          name: nginx-pod
+          labels:
+              app: nginx
+              role: dev
+       spec:
+         containers:
+         - name: nginx-cont
+           image: nginx
+           imagePullPolicy: IfNotPresent
+           volumeMounts:
+           - name: my-vol
+             mountPath: /demo
+           ports:
+           - containerPort: 80
+         volumes:
+         - name: my-vol
+           configMap:
+              name: my-config

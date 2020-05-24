@@ -1,0 +1,18 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+     name: cron
+spec:
+   schedule: "*/2 * * * *"
+   jobTemplate:
+       spec:
+          template:
+               metadata:
+                    name: mypod
+               spec:
+                  containers:
+                  - name: mycont
+                    image: nginx
+                    imagePullPolicy: IfNotPresent
+                    command: ["/bin/bash","-c","echo hello world"]
+                  restartPolicy: OnFailure
