@@ -1,0 +1,38 @@
+ apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+      name: nfs-client-provisioner
+ spec:
+    replicas: 1
+    strategy:
+         type: Recreate
+    selector:
+        matchLabels:
+            type: nfs-client-provi
+    template:
+        metadata:
+            name: nfs-pod
+            labels:
+               type: nfs-client-provi
+        spec:
+          serviceAccountName: nfs-client-provisionar
+          containers:
+          - name: nfs-client-provisionar
+            image: quay.io/external_storage/nfs-client-provisioner:latest
+            imagePullPolicy: IfNotPresent
+            volumeMounts:
+            - name: my-vol
+              mountPath: /persistentvolumes
+            env:
+            - name: PROVISIONER_NAME
+              value: example.com/nfs
+            - name: NFS_SERVER
+              value: 18.212.143.107
+            - name: NFS_PATH
+              value: /srv/nfs/kubedata
+          volumes:
+          - name: my-vol
+            nfs:
+              server: 18.212.143.107
+              path: /srv/nfs/kubedata
+

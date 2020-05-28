@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+     name: mypod
+     namespace: rq-ns
+spec:
+  containers:
+  - name: mycont
+    image: nginx
+    resources:
+        limits:
+            memory: "100Mi"
